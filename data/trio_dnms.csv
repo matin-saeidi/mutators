@@ -1,0 +1,26 @@
+offspring_id,gene,carrier_genotype,carrier_status,carrier_parent,carrier_parent_id,paternal_age_min,paternal_age_max,maternal_age_min,maternal_age_max,dnm_total,dnm_phased_paternal,dnm_phased_maternal,accessible_genome_bp,include_in_estimate,exclusion_reason,source
+GEL_1,XPC,R220*/R220*,homozygous,father,XPC_GEL1_father,30,35,20,25,425,129,1,,True,,Kaplanis et al. 2022
+GEL_3,MPG,A135T/A135T,homozygous,father,MPG_GEL3_father,35,40,30,35,306,87,5,,True,,Kaplanis et al. 2022
+POLE_A:II.1,POLE,L424V/+,heterozygous,mother,POLE_A_mother,30,30,23,23,93,11,23,,True,,Sherwood et al. 2023
+POLE_A:II.2,POLE,L424V/+,heterozygous,mother,POLE_A_mother,32,32,25,25,119,11,19,,True,,Sherwood et al. 2023
+POLE_A:II.3,POLE,L424V/+,heterozygous,mother,POLE_A_mother,37,37,30,30,156,23,14,,True,,Sherwood et al. 2023
+POLE_B:III.1,POLE,L424V/+,heterozygous,mother,POLE_B_mother,26,26,22,22,109,15,14,,True,,Sherwood et al. 2023
+POLE_B:III.2,POLE,L424V/+,heterozygous,mother,POLE_B_mother,29,29,24,24,84,14,9,,True,,Sherwood et al. 2023
+POLE_B:II.1,POLE,L424V/+,heterozygous,father,POLE_B_father,22,22,19,19,158,41,2,,True,,Sherwood et al. 2023
+POLE_B:II.2,POLE,L424V/+,heterozygous,father,POLE_B_father,24,24,21,21,231,51,4,,True,,Sherwood et al. 2023
+POLD1_A:II.1,POLD1,S478N/+,heterozygous,mother,POLD1_A_mother,18,18,19,19,56,11,7,,True,,Sherwood et al. 2023
+POLD1_A:II.2,POLD1,S478N/+,heterozygous,mother,POLD1_A_mother,20,20,22,22,60,9,9,,True,,Sherwood et al. 2023
+POLD1_A:II.3,POLD1,S478N/+,heterozygous,mother,POLD1_A_mother,24,24,25,25,65,14,12,,True,,Sherwood et al. 2023
+POLD1_B:II.1,POLD1,S478N/+,heterozygous,mother,POLD1_B_mother,28,28,19,19,76,15,12,,True,,Sherwood et al. 2023
+POLD1_B:II.2,POLD1,S478N/+,heterozygous,mother,POLD1_B_mother,33,33,24,24,69,6,6,,True,,Sherwood et al. 2023
+MUTYH_B:II.1,MUTYH,Y179C/G368D,compound_heterozygous,mother,MUTYH_B_mother,26,26,23,23,71,7,11,,True,,Sherwood et al. 2023
+MUTYH_B:II.2,MUTYH,Y179C/G368D,compound_heterozygous,mother,MUTYH_B_mother,29,29,26,26,57,4,11,,True,,Sherwood et al. 2023
+C11,MUTYH,Y179C/V234M,compound_heterozygous,mother,MUTYH_C1_mother,24,24,20,20,49,11,7,2665818328,True,,Young et al. 2024
+C12,MUTYH,Y179C/V234M,compound_heterozygous,mother,MUTYH_C1_mother,28,28,24,24,71,20,4,2665818328,True,,Young et al. 2024
+C21,MUTYH,Y179C/V234M,compound_heterozygous,mother,MUTYH_C2_mother,37,37,34,34,49,9,2,1895232586,True,,Young et al. 2024
+C23,MUTYH,Y179C/V234M,compound_heterozygous,mother,MUTYH_C2_mother,35,35,32,32,54,12,6,2115053451,True,,Young et al. 2024
+C22,MUTYH,Y179C/V234M,compound_heterozygous,mother,MUTYH_C2_mother,39,39,36,36,34,5,0,2064764840,False,no DNMs phased to the carrier (maternal) germline,Young et al. 2024
+C31,MUTYH,Y179C/V234M,compound_heterozygous,father,MUTYH_C3_father,36,36,32,32,79,14,6,2665818328,True,,Young et al. 2024
+C32,MUTYH,Y179C/V234M,compound_heterozygous,father,MUTYH_C3_father,33,33,29,29,72,19,4,2665818328,True,,Young et al. 2024
+C41,MUTYH,V234M/+,heterozygous,mother,MUTYH_C4_mother,37,37,32,32,46,14,1,1305645830,False,heterozygous carrier of a recessive mutator (V234M/+); not a mutator parent,Young et al. 2024
+C42,MUTYH,V234M/+,heterozygous,mother,MUTYH_C4_mother,41,41,36,36,56,17,7,1305645830,False,heterozygous carrier of a recessive mutator (V234M/+); not a mutator parent,Young et al. 2024

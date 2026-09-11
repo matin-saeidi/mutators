@@ -1,0 +1,43 @@
+gene,variant,variant_short,dbsnp,population,population_name,allele_count,allele_number,allele_frequency,note
+XPC,p.Arg220Ter,R220*,rs745679643,nfe,European (non-Finnish),16,1179542,1.35646e-05,
+XPC,p.Arg220Ter,R220*,rs745679643,fin,European (Finnish),3,63958,4.69058e-05,
+XPC,p.Arg220Ter,R220*,rs745679643,eas,East Asian,0,44854,0,
+XPC,p.Arg220Ter,R220*,rs745679643,sas,South Asian,2,90690,2.20531e-05,
+XPC,p.Arg220Ter,R220*,rs745679643,mid,Middle Eastern,0,6076,0,
+XPC,p.Arg220Ter,R220*,rs745679643,afr,African,0,74910,0,
+MPG,p.Ala135Thr,A135T,rs200449939,nfe,European (non-Finnish),212,1179928,0.000179672,
+MPG,p.Ala135Thr,A135T,rs200449939,fin,European (Finnish),0,63152,0,
+MPG,p.Ala135Thr,A135T,rs200449939,eas,East Asian,3,44880,6.68449e-05,
+MPG,p.Ala135Thr,A135T,rs200449939,sas,South Asian,35,91070,0.00038432,
+MPG,p.Ala135Thr,A135T,rs200449939,mid,Middle Eastern,7,6060,0.00115512,
+MPG,p.Ala135Thr,A135T,rs200449939,afr,African,10,75048,0.000133248,
+POLE,p.Leu424Val,L424V,rs483352909,nfe,European (non-Finnish),1,1179986,8.47468e-07,
+POLE,p.Leu424Val,L424V,rs483352909,fin,European (Finnish),0,63886,0,
+POLE,p.Leu424Val,L424V,rs483352909,eas,East Asian,0,44892,0,
+POLE,p.Leu424Val,L424V,rs483352909,sas,South Asian,0,91090,0,
+POLE,p.Leu424Val,L424V,rs483352909,mid,Middle Eastern,0,6060,0,
+POLE,p.Leu424Val,L424V,rs483352909,afr,African,0,75050,0,
+POLD1,p.Ser478Asn,S478N,rs397514632,nfe,European (non-Finnish),0,1172856,0,"rs397514632 absent from gnomAD v4.1.1; allele_number taken from the adjacent 3' site rs1199543659 (chr19:50,406,457, GRCh38)"
+POLD1,p.Ser478Asn,S478N,rs397514632,fin,European (Finnish),0,62800,0,"rs397514632 absent from gnomAD v4.1.1; allele_number taken from the adjacent 3' site rs1199543659 (chr19:50,406,457, GRCh38)"
+POLD1,p.Ser478Asn,S478N,rs397514632,eas,East Asian,0,44180,0,"rs397514632 absent from gnomAD v4.1.1; allele_number taken from the adjacent 3' site rs1199543659 (chr19:50,406,457, GRCh38)"
+POLD1,p.Ser478Asn,S478N,rs397514632,sas,South Asian,0,89328,0,"rs397514632 absent from gnomAD v4.1.1; allele_number taken from the adjacent 3' site rs1199543659 (chr19:50,406,457, GRCh38)"
+POLD1,p.Ser478Asn,S478N,rs397514632,mid,Middle Eastern,0,6036,0,"rs397514632 absent from gnomAD v4.1.1; allele_number taken from the adjacent 3' site rs1199543659 (chr19:50,406,457, GRCh38)"
+POLD1,p.Ser478Asn,S478N,rs397514632,afr,African,0,74602,0,"rs397514632 absent from gnomAD v4.1.1; allele_number taken from the adjacent 3' site rs1199543659 (chr19:50,406,457, GRCh38)"
+MUTYH,p.Tyr179Cys,Y179C,rs34612342,nfe,European (non-Finnish),2752,1180030,0.00233214,
+MUTYH,p.Tyr179Cys,Y179C,rs34612342,fin,European (Finnish),103,64038,0.00160842,
+MUTYH,p.Tyr179Cys,Y179C,rs34612342,eas,East Asian,0,44888,0,
+MUTYH,p.Tyr179Cys,Y179C,rs34612342,sas,South Asian,4,91090,4.39126e-05,
+MUTYH,p.Tyr179Cys,Y179C,rs34612342,mid,Middle Eastern,1,6060,0.000165017,
+MUTYH,p.Tyr179Cys,Y179C,rs34612342,afr,African,25,75024,0.000333227,
+MUTYH,p.Gly368Asp,G368D,rs36053993,nfe,European (non-Finnish),6944,1180038,0.00588456,
+MUTYH,p.Gly368Asp,G368D,rs36053993,fin,European (Finnish),116,63766,0.00181915,
+MUTYH,p.Gly368Asp,G368D,rs36053993,eas,East Asian,3,44882,6.68419e-05,
+MUTYH,p.Gly368Asp,G368D,rs36053993,sas,South Asian,13,91088,0.000142719,
+MUTYH,p.Gly368Asp,G368D,rs36053993,mid,Middle Eastern,3,6060,0.00049505,
+MUTYH,p.Gly368Asp,G368D,rs36053993,afr,African,69,75052,0.000919363,
+MUTYH,p.Val234Met,V234M,rs200165598,nfe,European (non-Finnish),374,1180014,0.000316945,
+MUTYH,p.Val234Met,V234M,rs200165598,fin,European (Finnish),0,63976,0,
+MUTYH,p.Val234Met,V234M,rs200165598,eas,East Asian,0,44892,0,
+MUTYH,p.Val234Met,V234M,rs200165598,sas,South Asian,0,91086,0,
+MUTYH,p.Val234Met,V234M,rs200165598,mid,Middle Eastern,0,6084,0,
+MUTYH,p.Val234Met,V234M,rs200165598,afr,African,1,74942,1.33437e-05,

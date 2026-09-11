@@ -1,0 +1,4 @@
+component,description,n_sites,per_site_rate,roulette_raw_rate_sum,mutation_rate_per_gen
+snv_lof,"stop-gained, start-lost, stop-lost, splice-donor, splice-acceptor SNVs (VEP)",568,,41.512,2.106734e-06
+frameshift_indel,canonical CDS length (ENST00000285021.12) x frameshift indel rate (Porubsky et al. 2025),2823,8.2493016e-10,,2.328778e-06
+total_lof,sum of the two components; used as the forward mutation rate in the XPC compound-heterozygote simulations,,,,4.435512e-06
