@@ -4,7 +4,7 @@ Code and data for:
 
 > Saeidi M, Sella G, Przeworski M, Milligan WR. Dynamics of mutators of arbitrary dominance in humans. Submitted to *GENETICS*.
 
-We develop a population genetic model of germline mutation rate modifiers ("mutators") with arbitrary dominance, use it to interpret the frequencies of the seven human mutators identified to date, and ask which kinds of mutators trio-based studies are most likely to discover.
+We develop a population genetic model of germline mutation rate modifiers ("mutators") with arbitrary dominance, and ask which kinds of mutators trio-based studies are most likely to discover.
 
 ## Repository layout
 
@@ -42,4 +42,4 @@ This estimates the effect size of each known mutator from trio de novo mutation 
 
 ## Contact
 
-Matin Saeidi (ss6917@columbia.edu) and William Milligan (wm2377@columbia.edu)
+Matin Saeidi (ss6917@columbia.edu).
