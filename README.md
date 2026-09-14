@@ -108,8 +108,8 @@ one, at roughly 4,700 CPU-hours.
 
 ### Selection coefficients
 
-A mutator raises the genome-wide mutation rate by `phi` per generation, and its
-own selection coefficient in a homozygote is
+For a mutator that raises the genome-wide mutation rate by `phi` per generation, its
+selection coefficient in a homozygote is
 
 ```
 s = 2 * phi_hom * f * G * s_het
@@ -140,16 +140,7 @@ q                    # every replicate, zeros included
 q[q > 0]             # conditional on the mutator segregating
 ```
 
-The published figures use every replicate. Allele ages are the exception: a
-replicate in which the variant never arose has no age.
-
-### Reproducibility
-
-The C++ simulators seed from the wall clock, so re-running one with identical
-arguments gives different replicates. The frequency and age distributions
-reproduce statistically, to within Monte Carlo error at 1e5–4e6 replicates per
-point, rather than replicate for replicate. `model_validation.smk` is pure Python
-and is deterministic, as are the summarisers and the figure scripts.
+The published figures use every replicate. Allele ages are the exception.
 
 ## Data
 
