@@ -142,7 +142,7 @@ q[q > 0]             # conditional on the mutator segregating
 
 The published figures use every replicate. Allele ages are the exception.
 
-Simulation reproducibility: see src/simulations/README.md.
+Simulation reproducibility: see `src/simulations/README.md`.
 
 ## Data
 
