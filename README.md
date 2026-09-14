@@ -142,6 +142,8 @@ q[q > 0]             # conditional on the mutator segregating
 
 The published figures use every replicate. Allele ages are the exception.
 
+Simulation reproducibility: see src/simulations/README.md.
+
 ## Data
 
 `data/` contains the small tables the analyses start from: gnomAD v4.1.1 allele counts of the known mutators by genetic ancestry group, Roulette mutation rates to each mutator allele, the *XPC* loss-of-function mutation rate, the trio DNM counts behind the effect-size estimates, and the demographic histories. Column definitions, sources, and processing notes are in [`data/README.md`](data/README.md).
