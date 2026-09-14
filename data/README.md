@@ -8,7 +8,7 @@ Small input tables used in the paper. Each file corresponds to a supplementary t
 | `mutation_rates_roulette.csv` | Table S4 | Point mutation rate to each mutator allele |
 | `xpc_lof_mutation_rate.csv` | Table S5 | Total loss-of-function mutation rate of *XPC* |
 | `trio_dnms.csv` | Table S3 | DNM counts, phasing, and parental ages of trios with a mutator parent |
-| `demographic_models/` | Figure S4 | *(to be added)* Effective population size through time for NFE, SAS and AFR |
+| `demographic_models/` | Figure S4 | Effective population size through time for NFE, SAS and AFR |
 
 Coordinates are GRCh38 throughout.
 
@@ -90,6 +90,31 @@ Processing notes:
 - Where a trio reports its accessible genome size, the expected number of DNMs, E(Y), is scaled by that size relative to the accessible genome in Jónsson et al. (2017), 2,682,890,000 bp.
 - Offspring C22 is excluded because no DNMs were phased to the carrier (maternal) germline.
 - Offspring C41 and C42 are excluded because their mother is a simple heterozygote for V234M.
+
+## `demographic_models/`
+
+Effective population size through time for the three ancestry groups, one file
+each:
+
+| File | History |
+|---|---|
+| `NFE_schiffels_durbin_schraiber.tsv` | Schiffels & Durbin (2014), then Schraiber et al. (2025) from generation 517 |
+| `SAS_schiffels_durbin_kar.tsv` | Schiffels & Durbin (2014), then Kar et al. (2026) from generation 1054 |
+| `AFR_schiffels_durbin_kar.tsv` | Schiffels & Durbin (2014), then Kar et al. (2026) from generation 1200 |
+
+These are dumped from the compiled simulators by
+`tools/dump_demographic_models.sh`, so they are the values the simulations used.
+Regenerate them with `make models`.
+
+| Column | Description |
+|---|---|
+| `epoch` | Epoch index; epoch 0 is ancestral and applies to every generation older than the oldest breakpoint |
+| `gen_hi`, `gen_lo` | Generations before the present spanned by the epoch, inclusive |
+| `Ne` | Effective population size during the epoch |
+
+Tabulated in generations before the present; the simulations themselves run
+forward in time. The group written `nfe` elsewhere in `data/` is the history the
+simulators select with `eur`.
 
 ---
 

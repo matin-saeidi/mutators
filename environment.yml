@@ -1,0 +1,21 @@
+# conda env create -f environment.yml && conda activate mutators
+#
+# Versions are the ones the paper's analyses were run with. The simulators are
+# C++ and are NOT in here: they need a C++11 compiler and the Boost headers
+# (boost/random, header-only -- nothing to link). Boost 1.66 was used.
+name: mutators
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.13
+  - numpy=2.1
+  - scipy=1.15
+  - pandas=2.2
+  - matplotlib=3.10
+  # workflow engine; the cluster-generic plugin is what the Slurm profile uses
+  - snakemake=9.9
+  - snakemake-executor-plugin-cluster-generic
+  # only needed to build the simulators from source
+  - cxx-compiler
+  - boost-cpp

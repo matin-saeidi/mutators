@@ -1,0 +1,46 @@
+# Snakemake profile for a Slurm cluster.
+#
+#   snakemake --snakefile workflow/const_phiG.smk --profile workflow/profiles/slurm
+#
+# Set `account` and `partition` below to your own before the first run; the
+# values here are the ones the paper's runs used and will not exist elsewhere.
+
+executor: cluster-generic
+
+# Ctrl-C in the controlling terminal should also cancel the jobs already out on
+# the cluster. Without this, snakemake prints "No --cluster-cancel given. Will
+# exit after finishing currently running jobs" and leaves them running with
+# nothing watching them.
+cluster-generic-cancel-cmd: scancel
+
+cluster-generic-submit-cmd:
+  mkdir -p logs/{rule} &&
+  sbatch
+    --account={resources.account}
+    --partition={resources.partition}
+    --time={resources.time}
+    --ntasks={resources.ntasks}
+    --cpus-per-task={resources.cpus_per_task}
+    --mem-per-cpu={resources.mem_per_cpu}
+    --job-name=smk-{rule}-{wildcards}
+    --output=logs/{rule}/{rule}-{wildcards}-%j.out
+    --error=logs/{rule}/{rule}-{wildcards}-%j.err
+
+default-resources:
+  account: "CHANGE_ME"
+  partition: "short"          # fallback so every rule resolves a partition
+  time: "'11:59:00'"          # one minute under this partition's 12:00:00 cap
+  ntasks: 1
+  cpus_per_task: 1
+  mem_per_cpu: "250M"
+
+restart-times: 1              # auto-resubmit a job that brushes the wall clock
+max-jobs-per-second: 200
+max-status-checks-per-second: 1
+local-cores: 1
+latency-wait: 600
+jobs: 500
+keep-going: True
+rerun-incomplete: True
+printshellcmds: True
+scheduler: greedy

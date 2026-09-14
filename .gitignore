@@ -1,0 +1,26 @@
+# Simulation output. These are large (the varying-s grid alone is ~650 MB of
+# .npz, and its raw .out files run to hundreds of GB) and are not distributed:
+# regenerate them with the workflows in workflow/. See README.md.
+/results/
+*.out
+*.npz
+
+# Figures are build products of figures/*.py
+/figures/output/
+
+# Compiled simulators
+/src/simulations/bin/
+*.o
+
+# Snakemake and Python noise
+.snakemake/
+logs/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Editor / OS
+.vscode/
+.DS_Store
+*.bak
+*~

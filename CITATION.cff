@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper."
+title: "Dynamics of mutators of arbitrary dominance in humans: analysis code"
+abstract: >-
+  A population genetic model of germline mutation rate modifiers ("mutators")
+  with arbitrary dominance, with the forward simulations, effect-size estimates
+  and likelihood analyses behind the paper.
+authors:
+  - family-names: "Saeidi"
+    given-names: "Matin"
+    email: "ss6917@columbia.edu"
+  - family-names: "Sella"
+    given-names: "Guy"
+  - family-names: "Przeworski"
+    given-names: "Molly"
+  - family-names: "Milligan"
+    given-names: "William R."
+repository-code: "https://github.com/matin-saeidi/mutators"
+license: MIT
+keywords:
+  - population genetics
+  - mutation rate modifiers
+  - mutator alleles
+  - dominance
+  - forward simulation
+preferred-citation:
+  type: article
+  title: "Dynamics of mutators of arbitrary dominance in humans"
+  authors:
+    - family-names: "Saeidi"
+      given-names: "Matin"
+    - family-names: "Sella"
+      given-names: "Guy"
+    - family-names: "Przeworski"
+      given-names: "Molly"
+    - family-names: "Milligan"
+      given-names: "William R."
+  journal: "GENETICS"
+  year: 2026
+  notes: "Submitted"
