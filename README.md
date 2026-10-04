@@ -36,6 +36,12 @@ python src/effect_sizes.py
 
 This estimates the effect size of each known mutator from trio de novo mutation counts and reproduces Table S3 (and the effect sizes in Table 2).
 
+```bash
+python src/proband/analytic.py
+```
+
+This prints the probability of a proband in a trio, and in a cohort of 22,000 trios, with no mutator parent (Section S6.2).
+
 To run the simulations and redraw the figures:
 
 ```bash
@@ -57,25 +63,34 @@ be moved: pass `--config results_dir=...` to snakemake and set
 | Analysis | In the paper | Code |
 |---|---|---|
 | Effect sizes of known mutators | Table 2, Table S3; Supplementary Section S4.1 | `src/effect_sizes.py` |
-| Stationary distribution and increase in mean mutation rate | Figure 1; Eqs. 7–11 | *(to be added)* |
-| Mutator, single-site, and compound-heterozygote simulations | Figures 1–2, S1, S3, S5, S9, S10; Section S3 | `workflow/`, `src/simulations/`, `src/summaries/` |
+| Stationary distribution and increase in mean mutation rate | Figure 1; Eqs. 7–11, S12–S21 | `src/stationary_distribution.py` |
+| Mutator simulations | Figures 1, S2, S3; Section S3.1 | `workflow/mutator_simulation.smk`, `src/mutator_simulation/` |
+| Single-site and compound-heterozygote simulations | Figures 2, S3, S5, S7–S10; Sections S3.2–S3.4 | `workflow/`, `src/simulations/`, `src/summaries/` |
+| Model validation | Figure S1; Section S2.1 | `workflow/model_validation.smk`, `src/model_validation/` |
 | Likelihoods and tests of neutrality | Figures 2–3, Table S6; Section S5 | `figures/fig_sas_combined.py`, `figures/fig_dominance_sweep.py` |
-| Proband discovery in trios | Figure 4, Figures S6, S11, S12; Section S6 | *(to be added)* |
+| Proband discovery in trios | Figure 4, Figures S6, S11, S12; Section S6 | `workflow/proband_discovery.smk`, `src/proband/` |
 
 Each figure is drawn by one script in `figures/`, which reads the simulation
 output named in the last column:
 
 | Figure | Script | Workflow |
 |---|---|---|
+| Figure 1 | `fig_frequency_and_delta_u.py` | `mutator_simulation.smk` (2 N s_het = 20) |
 | Figure 2 | `fig_sas_combined.py` | `const_phiG.smk` (pop=sas), `varying_selection.smk` |
 | Figure 3 | `fig_dominance_sweep.py` | `varying_dominance.smk` |
+| Figure 4 | `fig_proband_discovery.py` | `proband_discovery.smk` |
 | Figure S1 | `fig_model_validation.py` | `model_validation.smk` |
+| Figure S2 | `fig_varying_shet.py` | `mutator_simulation.smk` (2 N s_het = 10, 20, 40) |
+| Figure S3 | `fig_mutator_vs_single_site.py` | `mutator_simulation.smk` (2 N s_het = 20), `single_site_constant_N.smk` |
 | Figure S4 | `fig_demographic_histories.py` | — (reads `data/demographic_models/`) |
 | Figure S5 | `fig_xpc_varying_mu.py` | `XPC_varying_gene_mu.smk` |
+| Figure S6 | `fig_modifier_sites_needed.py` | `proband_discovery.smk` |
 | Figure S7 | `fig_scenario_comparison.py --scenario shet` | `const_phiG.smk`, `const_phiG_shet_1e-4.smk` |
 | Figure S8 | `fig_three_histories.py` | `const_phiG.smk` at pop=eur, sas and afr |
 | Figure S9 | `fig_scenario_comparison.py --scenario backmut` | `const_phiG.smk`, `const_phiG_no_back_mut.smk` |
 | Figure S10 | `fig_allele_ages.py` | `mutator_ages.smk` |
+| Figure S11 | `fig_proband_by_parent_sex.py` | — (analytic, `src/proband/analytic.py`) |
+| Figure S12 | `fig_mutator_parent_check.py` | `proband_discovery.smk` |
 
 ```bash
 make figures                                        # all of them
@@ -85,7 +100,8 @@ python figures/fig_sas_combined.py                  # just one
 ## Simulations
 
 The forward simulators are in `src/simulations/` (see the README there for how
-they are invoked and where they came from). `workflow/` drives them:
+they are invoked and where they came from) and, for the mutator simulations, in
+`src/mutator_simulation/`. `workflow/` drives them:
 
 | workflow | produces |
 |---|---|
@@ -97,14 +113,18 @@ they are invoked and where they came from). `workflow/` drives them:
 | `mutator_ages.smk` | allele-age distributions, with neutral controls |
 | `XPC_varying_gene_mu.smk` | *XPC* focal-variant frequency against the gene-wide LoF rate |
 | `model_validation.smk` | trajectories and *s* against *q*, checking the model |
+| `mutator_simulation.smk` | mutator simulations over 21 values of phi_G, for `--config two_N_shet=10,20,40` |
+| `single_site_constant_N.smk` | single-site simulations at constant N = 2000 over the same phi_G |
+| `proband_discovery.smk` | frequency distributions under the NFE history over 100 values of phi_G, and the trio-study simulations |
 
 See [`docs/running_the_simulations.md`](docs/running_the_simulations.md) for how
 to run these on a cluster, what they write, and how to read it.
 
-Simulation output is not distributed: the figure inputs come to about 1 GB of
-`.npz` and the raw simulator output behind them to several hundred GB. The
-workflows above regenerate it. The selection-coefficient grid is the expensive
-one, at roughly 4,700 CPU-hours.
+Simulation output is not distributed: the figure inputs come to about 2 GB of
+`.npz` and `.json` and the raw simulator output behind them to several hundred
+GB. The workflows above regenerate it. The expensive ones are the mutator
+simulations, roughly 4,000 CPU-hours for each value of 2 N s_het, and the
+selection-coefficient grid, roughly 4,700 CPU-hours.
 
 ### Selection coefficients
 

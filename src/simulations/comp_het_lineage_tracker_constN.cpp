@@ -130,8 +130,8 @@ int main(int argc, char* argv[]) {
     allow_back_mutation = ((int)atof(argv[9]) != 0);
 
     // Seed RNGs
-    gent.seed(time(NULL) + pid_seed);
-    BRand::Controller.seed(time(NULL) + pid_seed);
+    gent.seed(pid_seed);
+    BRand::Controller.seed(pid_seed);
 
     // Initialize selection/dominance in population class
     population::initialize(sel, DOM);

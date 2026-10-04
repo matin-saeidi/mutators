@@ -1,6 +1,7 @@
 """Shared helpers for the figure scripts: paths, style, the gnomAD and
-demographic-model loaders, exact binomial confidence intervals, and the
-log-axis floor handling.
+demographic-model loaders, exact binomial confidence intervals, the
+log-axis floor handling, and loaders for the mutator-simulation and
+proband-discovery outputs.
 
 The published figures are unconditional: every simulated replicate is included,
 and a replicate in which the mutator was lost enters at a frequency of exactly
@@ -25,6 +26,7 @@ from scipy.special import gammaln, xlogy, xlog1py
 # --------------------------------------------------------------------------- #
 REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "data"
+SRC = REPO / "src"
 
 
 def results_root() -> Path:
@@ -224,3 +226,44 @@ class FloorTracker:
               f"reach the value shown:")
         for label, frac in self.floored:
             print(f"        {label:<{width}s} {100 * frac:5.1f}% of replicates are 0")
+
+
+# --------------------------------------------------------------------------- #
+# Mutator simulations and proband discovery
+# --------------------------------------------------------------------------- #
+def load_mutator_summary(two_n_shet) -> list[dict]:
+    """Rows of results/mutator_simulation/2Ns_het_<x>/summary.json
+    (workflow/mutator_simulation.smk), in increasing phi_G."""
+    path = results_root() / "mutator_simulation" / f"2Ns_het_{two_n_shet}" / "summary.json"
+    with open(path) as fh:
+        summary = json.load(fh)
+    return sorted(summary.values(), key=lambda row: row["phi_G"])
+
+
+def load_trio_runs(arm: str, M: int, dominance: str, n_trios: int = 22000) -> list[dict]:
+    """Metadata of every trio simulation in
+    results/proband_discovery/trios/n_<n>/<arm>/M_<M>/<dominance>/
+    (workflow/proband_discovery.smk), in increasing phi_G."""
+    folder = (results_root() / "proband_discovery" / "trios" / f"n_{n_trios}" / arm
+              / f"M_{M}" / dominance)
+    runs = []
+    for path in folder.glob("s_*.json"):
+        with open(path) as fh:
+            runs.append(json.load(fh))
+    if not runs:
+        raise SystemExit(f"no trio simulations in {folder}")
+    return sorted(runs, key=lambda run: run["phi_G"])
+
+
+def load_mutator_frequencies(dominance: str):
+    """Yield (s, present-day frequencies) for every file in
+    results/proband_discovery/frequencies/<dominance>/ (workflow/proband_discovery.smk),
+    in increasing s."""
+    folder = results_root() / "proband_discovery" / "frequencies" / dominance
+    paths = sorted(folder.glob("s_*.npz"), key=lambda p: float(p.stem[2:]))
+    if not paths:
+        raise SystemExit(f"no frequency distributions in {folder}")
+    for path in paths:
+        key = path.stem[2:]
+        with np.load(path) as z:
+            yield float(key), z[key].astype(np.float64)

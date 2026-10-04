@@ -85,16 +85,9 @@ The gnomAD genetic ancestry group written `nfe` in `data/` is the history called
 
 ## Seeding
 
-Both simulators seed from the wall clock:
-
-```c++
-gent.seed(time(NULL) + pid_seed);
-```
-
-so the `seed` argument is an offset on the current time, not a seed. Re-running
-a command with identical arguments gives different replicates, and a resubmitted
-chunk does not repeat its original draw. The workflows record the offset used
-for every job in `params.txt`.
+The `seed` argument seeds the random number generators, so the same command
+gives the same output. The workflows give every job its own seed and record it
+in `params.txt`.
 
 ## Provenance
 

@@ -29,7 +29,7 @@
 //     sel, DOM              : selection coefficient (s), dominance (h)
 //     mutU                  : per-copy forward mutation rate per gen
 //     ufactor               : back-mutation factor; back rate = ufactor * mutU
-//     pid_seed              : seed offset
+//     pid_seed              : random seed
 //     allow_back_mutation   : 0 (off) or 1 (on)
 //     burn_in   (optional)  : starting generation (default = taujump of the
 //                             chosen population).  When > 0, the population is
@@ -374,8 +374,8 @@ int main(int argc, char *argv[]) {
          << endl;
 
     // Seed RNGs
-    gent.seed(time(NULL) + pid_seed);
-    BRand::Controller.seed(time(NULL) + pid_seed);
+    gent.seed(pid_seed);
+    BRand::Controller.seed(pid_seed);
 
     // Initialize selection params in the population class
     population::initialize(sel, DOM);

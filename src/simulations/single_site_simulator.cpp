@@ -477,8 +477,8 @@ int main(int argc, char *argv[])
          << " demographic_model=" << demographic_model
          << endl;
 
-    gent.seed(time(NULL) + pid_seed);
-    BRand::Controller.seed(time(NULL) + pid_seed);
+    gent.seed(pid_seed);
+    BRand::Controller.seed(pid_seed);
 
     stopover = RUNS;
 

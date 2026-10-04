@@ -76,12 +76,31 @@ results/<pop>/<workflow output dir>/
 | `mutator_ages.smk` | `<pop>/simulations_ages/` | `all_mutators_<pop>_ages.npz`, `.json`, `.tsv` |
 | `XPC_varying_gene_mu.smk` | `sas/simulations_varying_mu/` | `XPC_sas_varying_mu.npz`, `XPC_const1M_varying_mu.npz` |
 | `model_validation.smk` | `model_validation/` | `trajectories/*.npz`, `s_vs_q/*.npz` |
+| `mutator_simulation.smk` | `mutator_simulation/2Ns_het_<x>/` | `summary.json`, from `phi_G_<phi_G>/rep_<r>.npz` |
+| `single_site_constant_N.smk` | `single_site_constant_N/` | `single_site_recessive_N_2000.npz` |
+| `proband_discovery.smk` | `proband_discovery/` | `frequencies/<dominance>/s_<s>.npz`, `trios/n_22000/<arm>/M_<M>/<dominance>/s_<s>.npz` and `.json` |
+
+The last three have no `<pop>` level.
 
 Workflows that sweep a parameter summarise each point on its own into `per_s/`
 or `per_mu/` and then stitch those into the single final `.npz`. This lets each
 large raw `.out` be released as soon as its own summary exists, instead of the
 whole sweep having to sit on disk at once. Set `KEEP_RAW_OUT = True` at the top
-of a Snakefile to retain them; budget the disk first.
+of a Snakefile to retain them; budget the disk first. `proband_discovery.smk`
+does the same with its 200 frequency distributions.
+
+### Mutator simulations and trio studies
+
+A mutator replicate's `.npz` holds the mutator frequency at every modifier site
+at each saved generation, and `summary.json` the statistics at each phi_G (see
+[`src/mutator_simulation/README.md`](../src/mutator_simulation/README.md)).
+
+A trio-study `.npz` holds `prob_proband` and `any_mutator_parent` for each
+simulated cohort. The `.json` next to it holds the arguments and the two means,
+`pr_proband` and `pr_mutator_parent`.
+
+A mutator or trio job that reaches the wall-clock limit is resubmitted (the
+profile's `restart-times: 1`) and continues where it stopped.
 
 ## npz keys
 
@@ -98,12 +117,15 @@ bare key could not say which variant it refers to.
 | `varying_dominance` | MPG, XPC | `<h>` | `0.025` |
 | `XPC_varying_gene_mu` | XPC | `<mu>`, `age_s=<mu>` | `1.06135934e-06` |
 | `mutator_ages` | all | `<label>__<variant>_maxage_s=<s>` | `MPG__MPG_maxage_s=0.0102` |
+| `single_site_constant_N` | — | `<s>` | `8.000000e-04` |
+| `proband_discovery` (frequencies) | — | `<s>` | `8.000000e-04` |
 
 Where there is a single focal variant, unprefixed aliases (`freq_s=<s>`,
 `age_s=<s>`) are written as well.
 
 `s` is formatted with the precision the run used — 4 decimals for the
-constant-effect-size runs, 8 across the grids — so read the key out of
+constant-effect-size runs, 8 across the grids, `%.6e` in
+`single_site_constant_N` and `proband_discovery` — so read the key out of
 `z.files` rather than reconstructing it.
 
 **Frequency arrays are per run; age arrays are per lineage.** The two are not
@@ -175,6 +197,9 @@ Costs, approximately:
 | `const_phiG.smk` (sas) | 39 | 7 |
 | `varying_selection.smk` | ~4,500 | ~4,700 |
 | `model_validation.smk` | 8 | 2 |
+| `mutator_simulation.smk` (one value of 2 N s_het) | 1,051 | ~4,000 |
+| `single_site_constant_N.smk` | 22 | ~5 |
+| `proband_discovery.smk` | 1,801 | ~1,000 |
 
 Walltimes are set to `11:59:00`, just under the 12-hour cap of the partition
 these runs used. Size them generously: contention on shared nodes made the same
